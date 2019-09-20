@@ -5,7 +5,7 @@ It can handle without console output around 2.9 Seconds
 To see the numbers please uncomment the print number ... If you do this you need at least 40 seconds for 1 million numbers
 
 
-
+```
 ----------------------------------
 Time required: 3.2249562740325928
 Arithmetic mean (“average”) of data: 12.45364318
@@ -19,3 +19,4 @@ Population standard deviation of data: 558.6099381033649
 Population variance of data: 312045.0629478452
 Sample standard deviation of data: 558.6102174085435
 Sample variance of data: 312045.3749932202
+```
