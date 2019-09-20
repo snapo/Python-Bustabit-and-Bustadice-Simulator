@@ -7,7 +7,6 @@ import statistics
 hashobj = hashlib.sha256('Hello World'.encode('utf-8'))
 
 
-
 numberslist = []
 start = time.time()
 # Looperino starting here
@@ -16,16 +15,17 @@ for i in range(1000000):
     hashobj = hashlib.sha256(hashobj.hexdigest().encode('utf-8'))
     intversion = int(hashobj.hexdigest()[0:13], 16) # Javascript Original | parseInt(hash.slice(0,52/4),16);
     if (intversion % 101 == 0): # Check if Divisible by 101, if yes put out immediately 1 so users loose (1% house edge)
-        number = 1.0
+        number = 1.0000
     else:
         b = 4503599627370496 # Javascript Original | Math.pow(2,52);
         #number = math.floor((100 * b - intversion) / (b - intversion)) / 100
-        number = math.ceil((100 * b - intversion) / (b - intversion)) / 100 # not yet sure if this is truly the bug to be found.
+        number = math.ceil((100.0000 * b - intversion) / (b - intversion)) / 100.0000
     numberslist.append(number)
     #print(number) ### PLEASE PLEASE if doing bigger tests comment this out! 20x speed increase
-
-
 end = time.time()
+
+start2 = time.time()
+resulthighest = max(numberslist)
 
 resultmean = statistics.mean(numberslist) 
 resultharmonic_mean = statistics.harmonic_mean(numberslist)
@@ -41,9 +41,14 @@ resultstdev = statistics.stdev(numberslist)
 resultvariance = statistics.variance(numberslist)
 
 
+end2 = time.time()
+
 
 print("----------------------------------")
-print("Time required: " + str(end - start))
+print("Time required Bust numbers: " + str(end - start))
+print("Time required for Statistics: " + str(end2 - start2))
+
+print("Highest Value: " + str(resulthighest))
 print("Arithmetic mean (“average”) of data: " + str(resultmean))
 print("Harmonic mean of data: " + str(resultharmonic_mean))
 print("Median (middle value) of data: " + str(resultmedian))
