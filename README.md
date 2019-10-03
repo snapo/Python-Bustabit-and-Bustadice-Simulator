@@ -7,16 +7,4 @@ To see the numbers please uncomment the print number ... If you do this you need
 
 ```
 ----------------------------------
-Time required: 3.2249562740325928
-Arithmetic mean (“average”) of data: 12.45364318
-Harmonic mean of data: 1.9802408272862122
-Median (middle value) of data: 1.98
-Low median of data: 1.98
-High median of data: 1.98
-Median, or 50th percentile, of grouped data: 1.4815552099533438
-Mode (most common value) of discrete data: 1.0
-Population standard deviation of data: 558.6099381033649
-Population variance of data: 312045.0629478452
-Sample standard deviation of data: 558.6102174085435
-Sample variance of data: 312045.3749932202
-```
+This proofs that the House edge is over 1%... to be exact the calculated mean (which i did) over 1 billion iterrations is about 1.97 ... divide this by two then you get 0.985 (15 from 1000)... or in other words 1.5%
