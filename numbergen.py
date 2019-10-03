@@ -18,7 +18,7 @@ for i in range(10000):
         number = 1.000000000
     else:
         b = 4503599627370496 # Javascript Original | Math.pow(2,52);
-        number = math.ceil(((100 * b - intversion) / (b - intversion) / 100) * 100) / 100
+        number = math.tail(((100 * b - intversion) / (b - intversion) / 100) * 100) / 100
     numberslist.append(number)
     #print(number) ### PLEASE PLEASE if doing bigger tests comment this out! 20x speed increase
 end = time.time()
