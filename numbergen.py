@@ -1,26 +1,28 @@
 import hashlib
+import hmac
 import time
 import math
 import statistics
+import binascii
 
 #Define the starting object Hash
-hashobj = hashlib.sha256('Hello World'.encode('utf-8'))
-
+salt = binascii.hexlify(bytes('0000000000000000004d6ec16dafe9d8370958664c1dc422f452892264c59526', 'utf-8'))
+seed = binascii.hexlify(bytes('a767b5b64dd68d677a7b21508ca835e1d15a92b2b953885c66aa28ffe34a14fd', 'utf-8'))
+hashobj = hmac.new(salt, seed, hashlib.sha256)
 
 numberslist = []
 start = time.time()
+
 # Looperino starting here
-for i in range(10000):
+for i in range(1):
     number = 0
-    hashobj = hashlib.sha256(hashobj.hexdigest().encode('utf-8'))
-    intversion = int(hashobj.hexdigest()[0:13], 16) # Javascript Original | parseInt(hash.slice(0,52/4),16);
-    if (intversion % 101 == 0): # Check if Divisible by 101, if yes put out immediately 1 so users loose (1% house edge)
-        number = 1.000000000
-    else:
-        b = 4503599627370496 # Javascript Original | Math.pow(2,52);
-        number = math.tail(((100 * b - intversion) / (b - intversion) / 100) * 100) / 100
+    intversion = int(hashobj.hexdigest()[0:int(52/4)], 16)             # parseInt(hash.slice(0,52/4),16);
+    X = 99 / (1 - (intversion / (2 ** 52)))  # Math.pow(2,52);
+    number = max(1, math.floor(X) / 100)
     numberslist.append(number)
-    #print(number) ### PLEASE PLEASE if doing bigger tests comment this out! 20x speed increase
+    print(number) ### PLEASE PLEASE if doing bigger tests comment this out! 20x speed increase
+    hashobj = hashlib.sha256(hashobj.hexdigest().encode('utf-8'))
+
 end = time.time()
 
 start2 = time.time()
