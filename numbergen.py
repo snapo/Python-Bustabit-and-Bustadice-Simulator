@@ -2,26 +2,26 @@ import hashlib
 import hmac
 import time
 import math
-import statistics
 import binascii
-
+import statistics
 #Define the starting object Hash
-salt = binascii.hexlify(bytes('0000000000000000004d6ec16dafe9d8370958664c1dc422f452892264c59526', 'utf-8'))
-seed = binascii.hexlify(bytes('a767b5b64dd68d677a7b21508ca835e1d15a92b2b953885c66aa28ffe34a14fd', 'utf-8'))
-hashobj = hmac.new(salt, seed, hashlib.sha256)
+salt = '0000000000000000004d6ec16dafe9d8370958664c1dc422f452892264c59526'.encode()
+seed = "94809b699a42899197d863be47fe12fe15ae06bd481821c74b060868a7812260"
+hashobj = hmac.new(salt, binascii.unhexlify(seed), hashlib.sha256)
 
 numberslist = []
 start = time.time()
 
 # Looperino starting here
-for i in range(1):
+for i in range(10000000):
     number = 0
     intversion = int(hashobj.hexdigest()[0:int(52/4)], 16)             # parseInt(hash.slice(0,52/4),16);
     X = 99 / (1 - (intversion / (2 ** 52)))  # Math.pow(2,52);
     number = max(1, math.floor(X) / 100)
     numberslist.append(number)
-    print(number) ### PLEASE PLEASE if doing bigger tests comment this out! 20x speed increase
-    hashobj = hashlib.sha256(hashobj.hexdigest().encode('utf-8'))
+    #print(number) ### PLEASE PLEASE if doing bigger tests comment this out! 20x speed increase
+    seed = hashlib.sha256(seed.encode()).hexdigest()
+    hashobj = hmac.new(salt, binascii.unhexlify(seed), hashlib.sha256)
 
 end = time.time()
 
