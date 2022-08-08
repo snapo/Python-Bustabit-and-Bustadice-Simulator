@@ -1,6 +1,6 @@
 # Python-Bustabit-and-Bustadice-Simulator
 It just generates numbers from Bust a Dice // Bust a Bit and you can try your strategy. 
-It can handle without console output around 2.9 Seconds
+It can handle without console output around 100 million games in 2.9 Seconds (at least on my cpu on a single thread)
 
 To see the numbers please uncomment the print number ... If you do this you need at least 40 seconds for 1 million numbers
 
